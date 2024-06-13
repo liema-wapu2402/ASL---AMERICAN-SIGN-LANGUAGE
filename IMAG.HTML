@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Scroller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .image-scroller {
+            overflow: hidden;
+            width: 100%;
+            height: 300px; /* Adjust height as necessary */
+            position: relative;
+        }
+
+        .images {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .images img {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            45% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            70% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            95% { transform: translateX(-300%); }
+            100% { transform: translateX(0); }
+        }
+
+        .images {
+            animation: scroll 35s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-scroller">
+        <div class="images">
+            <img src="https://via.placeholder.com/800x300?text=Image+1" alt="Image 1">
+            <img src="https://via.placeholder.com/800x300?text=Image+2" alt="Image 2">
+            <img src="https://via.placeholder.com/800x300?text=Image+3" alt="Image 3">
+            <img src="https://via.placeholder.com/800x300?text=Image+4" alt="Image 4">
+            <img src="https://via.placeholder.com/800x300?text=Image+5" alt="Image 5">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scroller = document.querySelector('.images');
+            let index = 0;
+            const images = scroller.children;
+            const totalImages = images.length;
+            const delay = 7000; // 7 seconds
+
+            function scrollImages() {
+                index = (index + 1) % totalImages;
+                scroller.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            setInterval(scrollImages, delay);
+        });
+    </script>
+</body>
+</html>
